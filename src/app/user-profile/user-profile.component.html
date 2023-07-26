@@ -7,16 +7,18 @@
   <form>
     <div class="mb-3">
       <label for="nameInput" class="form-label">Name</label>
-      <input type="text" class="form-control" id="nameInput" [(ngModel)]="userName" name="userName" required>
-      <div class="invalid-feedback">Name is required.</div>
+      <input #inputField type="text" class="form-control" id="nameInput" [(ngModel)]="userName" name="userName" (input)="onName()" required>
+      <div *ngIf="flagName" class="text-danger">*Name is required.</div>
     </div>
     <div class="mb-3">
       <label for="ageInput" class="form-label">Age</label>
-      <input type="number" class="form-control" id="ageInput" [(ngModel)]="userAge" name="userAge">
+      <input type="number" class="form-control" id="ageInput" [(ngModel)]="userAge" name="userAge" (input)="onAge()">
+      <div *ngIf="flagAge" class="text-danger">*Age is required.</div>
     </div>
     <div class="mb-3">
       <label for="emailInput" class="form-label">Email</label>
-      <input type="email" class="form-control" id="emailInput" [(ngModel)]="userEmail" name="userEmail">
+      <input type="email" class="form-control" id="emailInput" [(ngModel)]="userEmail" name="userEmail" (input)="onChange()">
+      <div *ngIf="flagEmail" class="text-danger">*email is not valid</div>
     </div>
     <button type="button" class="btn btn-primary" (click)="changeName()">Change Name</button>
   </form>
